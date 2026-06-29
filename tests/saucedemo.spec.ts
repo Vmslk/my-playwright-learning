@@ -76,6 +76,19 @@ await page.getByRole("button", { name: "Login" }).click();
   "Error should appear for empty fields"
 ).toBeVisible();});
 
+//6 Locked user test
+
+test('locked user test', async ({ page }) => {
+
+await page.getByPlaceholder("Username").fill("locked_out_user");
+await page.getByPlaceholder("Password").fill("secret_sauce");
+await page.getByRole("button", { name: "Login" }).click();
+
+await expect(page.getByTestId("error")).toHaveText(
+    "Epic sadface: Sorry, this user has been locked out."  
+  );
+
+});
 });
 
 /*
