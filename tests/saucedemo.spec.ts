@@ -67,8 +67,8 @@ await page.getByRole("button", { name: "Login" }).click();
 
 // 5) Empty Form Validation Test
 
-test('Empty form validation', async ({ page }) => {
-  
+test.only('Empty form validation', async ({ page }) => {
+
 await page.getByRole("button", { name: "Login" }).click();
 
   await expect(
@@ -76,7 +76,22 @@ await page.getByRole("button", { name: "Login" }).click();
   "Error should appear for empty fields"
 ).toBeVisible();});
 
+//6 Locked user test
+
+test('locked user test', async ({ page }) => {
+
+await page.getByPlaceholder("Username").fill("locked_out_user");
+await page.getByPlaceholder("Password").fill("secret_sauce");
+await page.getByRole("button", { name: "Login" }).click();
+
+await expect(page.getByTestId("error")).toHaveText(
+    "Epic sadface: Sorry, this user has been locked out."  
+  );
+
 });
+
+});
+
 
 /*
 test('locators', async ({ page }) => {
@@ -86,3 +101,8 @@ test('locators', async ({ page }) => {
   await page.click('[data-test="login-button"]');
 
 await expect(page).toHaveURL(/inventory/);}); */
+
+
+//adding a new commen ted line for git practice
+
+//conflict line
