@@ -67,7 +67,7 @@ await page.getByRole("button", { name: "Login" }).click();
 
 // 5) Empty Form Validation Test
 
-test.only('Empty form validation', async ({ page }) => {
+test('Empty form validation', async ({ page }) => {
 
 await page.getByRole("button", { name: "Login" }).click();
 
